@@ -28,14 +28,12 @@ public class APIServiceImpl implements APIService {
     @Override
     public Post postData(Post post) {
         Integer userId = post.getUserId();
-        System.out.println("User id: " + userId);
         User user = userRepository.findUserById(userId);
-        System.out.println("User: " + user);
         int oldVal = user.getPostCount();
-        System.out.println("Old Post count value: " + oldVal);
         user.setPostCount(oldVal + 1);
-        System.out.println("User after Post: " + user);
         userRepository.save(user);
+        // This here is the code for Increasing post count of user when he makes any new
+        // post
         return postRepository.insert(post);
     }
 
